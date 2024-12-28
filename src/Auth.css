@@ -1,0 +1,111 @@
+/* General Layout */
+body {
+    background-color: #f4f4f4; /* Light gray background for the whole page */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .auth-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .auth-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Ensures proper spacing between elements */
+  }
+  
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between; /* Align logo on the left and title on the right */
+    padding: 10px 20px;
+    background-color: #ffffff; /* White background for the header */
+    z-index: 1000;
+  }
+  
+  .logo {
+    height: 60px;
+    width: auto; /* Maintain aspect ratio */
+  }
+  
+  .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000000; /* Ensure text is black */
+    margin-left: auto;
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+    
+
+  
+  /* Form Input Fields */
+  .auth-page input,
+  .auth-page select,
+  .auth-page button {
+    width: 100%; /* Ensures that the input fields take the full width of the container */
+    padding: 12px; /* Adjust padding for consistent size */
+    font-size: 16px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Ensures padding and borders are included in width */
+  }
+  
+  /* Register Button - Green */
+  .auth-page button[type="submit"]:nth-of-type(1) {
+    background-color: #28a745; /* Green button for Register */
+    color: white;
+    font-weight: bold;
+  }
+  
+  .auth-page button[type="submit"]:nth-of-type(1):hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
+  /* Log In Button - Green */
+  .auth-page button[type="submit"]:nth-of-type(2) {
+    background-color: #28a745; /* Green button for Log In */
+    color: white;
+    font-weight: bold;
+  }
+  
+  .auth-page button[type="submit"]:nth-of-type(2):hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
+  /* Switch Button - Blue */
+  .switch-button {
+    background-color: #007bff; /* Blue button for switching */
+    color: white;
+  }
+  
+  .switch-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* Dropdown - Grey */
+  .auth-page select {
+    background-color: #f0f0f0; /* Grey background for dropdown */
+    color: #333; /* Dark text color */
+    border: 1px solid #ccc;
+  }
+  
+  /* Log In Button Text Color */
+  button[type="submit"] {
+    color: #ffffff; /* White text for buttons */
+  }
+  
