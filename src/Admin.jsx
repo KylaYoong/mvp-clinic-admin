@@ -14,6 +14,7 @@ import {
   Timestamp,
   deleteDoc,
 } from "firebase/firestore";
+import CalendarWithTransactions from "./CalendarWithTransactions";
 import "./Admin.css";
 import SKPLogo from "./SKP-logo.jpg";
 
@@ -191,6 +192,10 @@ function Admin() {
     navigate("/input-employee-data");
   };
 
+  const handleNavigateToCalendar = () => {
+    navigate("/calendar");
+  };
+
   return (
     <div className="admin-container">
       <div className="header">
@@ -213,11 +218,13 @@ function Admin() {
             {loading ? "Registering..." : "Register New Patient"}
           </button>
         </form>
-
         <br />
         <button onClick={handleNavigateToTVQueue}>View Queue on TV</button>
         <br />
+
         <button onClick={handleNavigateToInputEmployeeData}>Go to Input Employee Data</button>
+        <br />
+        <button onClick={handleNavigateToCalendar}>Go to Calendar</button>
       </div>
     </div>
   );
