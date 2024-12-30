@@ -12,6 +12,7 @@ import {
   getDocs,
   onSnapshot,
   Timestamp,
+  deleteDoc,
 } from "firebase/firestore";
 import "./Admin.css";
 import SKPLogo from "./SKP-logo.jpg";
@@ -24,6 +25,47 @@ function Admin() {
 
   useEffect(() => {
     const patientsRef = collection(db, "queue");
+    const queueMetaRef = doc(db, "queueMeta", "queueMeta");
+
+    const resetDailyQueue = async () => {
+      try {
+        // Check if a reset is required
+        const queueMetaSnapshot = await getDocs(collection(db, "queueMeta"));
+        if (!queueMetaSnapshot.empty) {
+          const queueMetaData = queueMetaSnapshot.docs[0].data();
+          const lastResetDate =
+            queueMetaData.lastResetDate && typeof queueMetaData.lastResetDate.toDate === "function"
+              ? queueMetaData.lastResetDate.toDate()
+              : new Date(0);
+
+          const today = new Date().setHours(0, 0, 0, 0);
+          if (today !== lastResetDate.setHours(0, 0, 0, 0)) {
+            // Clear the queue for a new day
+            const snapshot = await getDocs(patientsRef);
+            const batch = db.batch();
+
+            snapshot.forEach((doc) => {
+              batch.delete(doc.ref);
+            });
+
+            // Reset queue metadata
+            batch.set(queueMetaRef, {
+              queueNumber: "S5-01",
+              lastResetDate: Timestamp.fromDate(new Date()),
+            });
+
+            await batch.commit();
+            console.log("Queue reset for the day completed.");
+          }
+        }
+      } catch (error) {
+        console.error("Error resetting the queue:", error);
+      }
+    };
+
+    resetDailyQueue();
+
+    // Monitor patients in the queue
     const q = query(
       patientsRef,
       where("status", "in", ["waiting", "being attended"]),
@@ -74,7 +116,6 @@ function Admin() {
 
     setLoading(true);
     try {
-      // Verify if the employee exists in the "employees" collection
       const employeesCollection = collection(db, "employees");
       const employeeSnapshot = await getDocs(query(employeesCollection, where("empID", "==", empID)));
 
@@ -84,7 +125,6 @@ function Admin() {
         return;
       }
 
-      // Retrieve queue metadata
       const queueCollection = collection(db, "queueMeta");
       const queueSnapshot = await getDocs(queueCollection);
 
@@ -93,7 +133,6 @@ function Admin() {
 
       if (!queueSnapshot.empty) {
         const queueData = queueSnapshot.docs[0].data();
-
         lastResetDate =
           queueData.lastResetDate && typeof queueData.lastResetDate.toDate === "function"
             ? queueData.lastResetDate.toDate()
@@ -101,14 +140,12 @@ function Admin() {
 
         const today = new Date().setHours(0, 0, 0, 0);
         if (today !== lastResetDate.setHours(0, 0, 0, 0)) {
-          // Reset queue number for a new day
           queueNumber = "S5-01";
           await setDoc(queueSnapshot.docs[0].ref, {
             queueNumber,
             lastResetDate: Timestamp.fromDate(new Date()),
           });
         } else {
-          // Increment queue number for the current day
           const lastQueueNumber =
             queueData.queueNumber && queueData.queueNumber.startsWith("S5-")
               ? parseInt(queueData.queueNumber.slice(3), 10)
@@ -121,7 +158,6 @@ function Admin() {
           });
         }
       } else {
-        // Initialize queue number if none exists
         queueNumber = "S5-01";
         await setDoc(doc(queueCollection, "queueMeta"), {
           queueNumber,
@@ -129,7 +165,6 @@ function Admin() {
         });
       }
 
-      // Register the patient with the generated queue number
       const patientRef = doc(collection(db, "queue"), empID);
       await setDoc(patientRef, {
         employeeID: empID,
