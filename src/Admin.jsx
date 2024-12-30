@@ -14,7 +14,6 @@ import {
   Timestamp,
   deleteDoc,
 } from "firebase/firestore";
-import CalendarWithTransactions from "./CalendarWithTransactions";
 import "./Admin.css";
 import SKPLogo from "./SKP-logo.jpg";
 
@@ -184,6 +183,7 @@ function Admin() {
     }
   };
 
+  // imported in App.jsx
   const handleNavigateToTVQueue = () => {
     navigate("/tv-queue-display");
   };
@@ -194,6 +194,10 @@ function Admin() {
 
   const handleNavigateToCalendar = () => {
     navigate("/calendar");
+  };
+
+  const handleNavigateToManageOptions = () => {
+    navigate("/manage-options");
   };
 
   return (
@@ -224,7 +228,11 @@ function Admin() {
 
         <button onClick={handleNavigateToInputEmployeeData}>Go to Input Employee Data</button>
         <br />
+
         <button onClick={handleNavigateToCalendar}>Go to Calendar</button>
+        <br />
+
+        <button onClick={handleNavigateToManageOptions}>Go to Manage Options</button>
       </div>
     </div>
   );

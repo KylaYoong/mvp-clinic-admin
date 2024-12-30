@@ -5,6 +5,7 @@ import Auth from "./Auth";
 import TVQueueDisplay from "./displays/TVQueueDisplay";
 import InputEmployeeData from "./InputEmployeeDataForm";
 import CalendarWithTransactions from "./CalendarWithTransactions";
+import ManageOptions from "./ManageOptions";
 
 const App = () => {
   return (
@@ -19,6 +20,9 @@ const App = () => {
 
       {/* Calendar Page */}
       <Route path="/calendar" element={<CalendarWithTransactions />} />
+
+      {/* Manage Doctor's Window Options */}
+      <Route path="/manage-options" element={<ManageOptions />} />
 
       {/* Fallback */}
       <Route path="*" element={<Auth />} />
