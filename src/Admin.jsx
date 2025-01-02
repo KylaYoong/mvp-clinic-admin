@@ -96,7 +96,7 @@ function Admin() {
       if (nextPatient) {
         await updateDoc(doc(db, "queue", nextPatient.id), { status: "being attended" });
         console.log(`Marked as being attended: ${nextPatient.queueNumber}`);
-        alert(`Invited: ${nextPatient.name}`);
+        alert(`Invited: ${nextPatient.queueNumber}`);
       } else {
         alert("No more patients waiting!");
       }
@@ -208,7 +208,7 @@ function Admin() {
       </div>
 
       <div className="admin-interface">
-        <button onClick={handleInviteNextPatient}>Invite Next Patient</button>
+        <button onClick={handleInviteNextPatient}>Call Next Patient</button>
 
         <form onSubmit={handleRegisterPatient} className="register-form">
           <input

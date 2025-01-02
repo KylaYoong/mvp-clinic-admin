@@ -8,6 +8,7 @@ const CalendarWithTransactions = () => {
   const [patients, setPatients] = useState([]);
   const [selectedDate, setSelectedDate] = useState(() => new Date().toISOString().split("T")[0]);
 
+  // useEffect to fetch patients for the selected date
   useEffect(() => {
     const patientsRef = collection(db, "queue");
 

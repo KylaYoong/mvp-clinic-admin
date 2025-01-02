@@ -9,7 +9,6 @@
 }
 
 .header {
-  font-size: 28px;
   font-weight: bold;
   color: black;
   display: flex;
@@ -18,6 +17,25 @@
   height: 70px; /* Adjusted height */
   border-bottom: 1px solid #ccc;
 }
+
+.date {
+  position: absolute; /* Explicit positioning */
+  left: 30px; /* Align to the left */
+  top: 50%; /* Vertically center */
+  transform: translateY(-50%); /* Fix vertical alignment */
+  font-size: 50px; /* Ensure consistent sizing */
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.time {
+  position: absolute; /* Explicit positioning */
+  right: 70px; /* Align to the right */
+  top: 50%; /* Vertically center */
+  transform: translateY(-50%); /* Fix vertical alignment */
+  font-size: 50px; /* Ensure consistent sizing */
+  white-space: nowrap; /* Prevent wrapping */
+}
+
 
 .main-container {
   display: flex;
@@ -43,7 +61,7 @@
 }
 
 .queue-number {
-  font-size: 70px; /* Larger font for better visibility */
+  font-size: 80px; /* Larger font for better visibility */
   font-weight: bold;
   color: #0077d9;
 }
@@ -57,18 +75,20 @@
 
 .upcoming-patient {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
   align-items: center;
   background-color: #4caf50;
   color: #fff;
-  padding: 30px 40px; /* Consistent padding for larger cards */
+  padding: 25px 40px; /* Consistent padding for larger cards */
   border-radius: 10px;
   width: 400px; /* Larger width */
-  font-size: 30px; /* Increased font size */
+  font-size: 36px; /* Increased font size */
   font-weight: bold; /* Bold text */
 }
 
-.footer {
+
+/* .footer {
   background-color: #d3d3d3;
   padding: 10px;
   display: flex;
@@ -78,4 +98,4 @@
 
 .footer .logo {
   height: 50px;
-}
+} */
