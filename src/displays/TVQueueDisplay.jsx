@@ -127,7 +127,15 @@ const TVQueueDisplay = () => {
           {/* Completed */}
           <div className="completed-section">
             <h2>Completed</h2>
-            {/* Add logic to display completed patients */}
+            {completedPatients.length > 0 ? (
+              completedPatients.map((patient) => (
+                <div key={patient.id} className="completed-item">
+                  {patient.queueNumber}
+                </div>
+              ))
+            ) : (
+              <p>No completed patients</p>
+            )}
           </div>
         </div>
       </div>

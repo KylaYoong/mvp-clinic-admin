@@ -64,14 +64,15 @@
 }
 
 .waiting-left-side .section h2 {
-  font-size: 28px; /* Increased font size */
+  font-size: 32px; /* Increased font size */
   color: #4caf50;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
 .waiting-left-side .queue-item {
   padding: 10px;
-  font-size: 40px; /* Adjusted font size for queue numbers */
+  font-size: 50px; /* Adjusted font size for queue numbers */
   background-color: #c8e6c9; /* Slightly darker green for items */
   border-radius: 5px;
   margin-bottom: 10px;
@@ -87,15 +88,17 @@
 }
 
 .now-serving-right-side .section:first-child h2 {
-  font-size: 36px; /* Increased font size */
+  font-size: 34px; /* Increased font size */
   color: #f44336;
   margin-bottom: 10px;
+  
 }
 
 .now-serving-right-side .section:first-child .queue-number {
-  font-size: 60px; /* Bigger font for now serving number */
+  font-size: 72px; /* Bigger font for now serving number */
   color: #d32f2f; /* Darker red for emphasis */
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 /* Completed Section - Orange */
@@ -104,11 +107,14 @@
   background-color: #ffffff; /* Light orange background */
   border-radius: 10px;
   padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .completed-section h2 {
-  font-size: 28px; /* Increased font size */
+  font-size: 32px; /* Increased font size */
   color: #ff9800;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
