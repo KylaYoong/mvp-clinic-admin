@@ -6,6 +6,7 @@ import "./TVQueueDisplay.css";
 const TVQueueDisplay = () => {
   const [currentServing, setCurrentServing] = useState(null);
   const [upcomingPatients, setUpcomingPatients] = useState([]);
+  const [completedPatients, setCompletedPatients] = useState([]);
   const [currentTime, setCurrentTime] = useState("");
 
   /**
@@ -94,27 +95,40 @@ const TVQueueDisplay = () => {
         <div className="date">{currentTime.split(" ")[0]}</div> {/* Date */}
         <div className="time">{currentTime.split(" ").slice(1).join(" ")}</div> {/* Time */}
       </div>
+      
       <div className="main-container">
-        {/* Current Serving */}
-        <div className="current-serving">
-          <h2>Current Serving</h2>
-          <div className="queue-number">
-            {currentServing ? currentServing.queueNumber : "None"}
+        {/* Left Side: Waiting */}
+        <div className="waiting-left-side">
+          <div className="section">
+            <h2>Waiting</h2>
+            {upcomingPatients.length > 0 ? (
+              upcomingPatients.map((patient) => (
+                <div key={patient.id} className="queue-item">
+                  <div className="queue">{patient.queueNumber}</div>
+                  <div className="name">{patient.name}</div>
+                </div>
+              ))
+            ) : (
+              <p>No waiting patients</p>
+            )}
           </div>
         </div>
-        {/* Upcoming Patients */}
-        <div className="upcoming">
-          <h2>Upcoming Patients</h2>
-          {upcomingPatients.length > 0 ? (
-            upcomingPatients.map((patient) => (
-              <div key={patient.id} className="upcoming-patient">
-                <div className="queue">{patient.queueNumber}</div>
-                <div className="name">{patient.name}</div>
-              </div>
-            ))
-          ) : (
-            <p>No upcoming patients</p>
-          )}
+
+        {/* Right Side */}
+        <div className="now-serving-right-side">
+          {/* Now Serving */}
+          <div className="section">
+            <h2>Now Serving</h2>
+            <div className="queue-number">
+              {currentServing ? currentServing.queueNumber : "None"}
+            </div>
+          </div>
+
+          {/* Completed */}
+          <div className="completed-section">
+            <h2>Completed</h2>
+            {/* Add logic to display completed patients */}
+          </div>
         </div>
       </div>
     </div>

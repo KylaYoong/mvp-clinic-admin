@@ -36,66 +36,84 @@
   white-space: nowrap; /* Prevent wrapping */
 }
 
-
 .main-container {
+  margin-top: 90px;
   display: flex;
-  justify-content: space-evenly; /* Space out Current Serving and Queue cards */
-  align-items: flex-start; /* Align items at the top */
+  justify-content: space-between;
   flex-grow: 1;
-  margin-top: 120px; /* Minor spacing to lift content up */
 }
 
-.current-serving {
-  border: 3px solid #4caf50;
-  border-radius: 10px;
-  padding: 40px;
-  width: 450px; /* Keep width consistent */
-  text-align: center;
-  background-color: #fff;
-}
-
-.current-serving h2 {
-  font-size: 36px; /* Increased font size */
-  color: #4caf50;
-  margin-bottom: 15px;
-}
-
-.queue-number {
-  font-size: 80px; /* Larger font for better visibility */
-  font-weight: bold;
-  color: #0077d9;
-}
-
-.upcoming {
+.waiting-left-side, .now-serving-right-side {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Reduced spacing between cards */
-  font-size: 20px
+  padding: 20px;
+  gap: 20px;
 }
 
-.upcoming-patient {
-  display: flex;
-  /* justify-content: space-between; */
-  justify-content: center;
-  align-items: center;
-  background-color: #4caf50;
-  color: #fff;
-  padding: 25px 40px; /* Consistent padding for larger cards */
+.now-serving-right-side {
+  border-left: 2px solid #ccc;
+}
+
+/* Waiting Section - Green */
+.waiting-left-side .section {
+  border: 3px solid #4caf50; /* Green border */
+  background-color: #ffffff; /* Light green background */
   border-radius: 10px;
-  width: 400px; /* Larger width */
-  font-size: 36px; /* Increased font size */
-  font-weight: bold; /* Bold text */
+  padding: 20px;
 }
 
+.waiting-left-side .section h2 {
+  font-size: 28px; /* Increased font size */
+  color: #4caf50;
+  margin-bottom: 10px;
+}
 
-/* .footer {
-  background-color: #d3d3d3;
+.waiting-left-side .queue-item {
   padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 40px; /* Adjusted font size for queue numbers */
+  background-color: #c8e6c9; /* Slightly darker green for items */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
-.footer .logo {
-  height: 50px;
-} */
+/* Now Serving Section - Red */
+.now-serving-right-side .section:first-child {
+  border: 3px solid #f44336; /* Red border */
+  background-color: #ffebee; /* Light red background */
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.now-serving-right-side .section:first-child h2 {
+  font-size: 36px; /* Increased font size */
+  color: #f44336;
+  margin-bottom: 10px;
+}
+
+.now-serving-right-side .section:first-child .queue-number {
+  font-size: 60px; /* Bigger font for now serving number */
+  color: #d32f2f; /* Darker red for emphasis */
+  font-weight: bold;
+}
+
+/* Completed Section - Orange */
+.completed-section {
+  border: 3px solid #ff9800; /* Orange border */
+  background-color: #ffffff; /* Light orange background */
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.completed-section h2 {
+  font-size: 28px; /* Increased font size */
+  color: #ff9800;
+  margin-bottom: 10px;
+}
+
+.completed-section .completed-item {
+  font-size: 22px; /* Font size for completed queue numbers */
+  font-weight: bold;
+  margin-bottom: 5px;
+}
