@@ -107,8 +107,6 @@
   background-color: #ffffff; /* Light orange background */
   border-radius: 10px;
   padding: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .completed-section h2 {
@@ -118,8 +116,13 @@
   margin-bottom: 10px;
 }
 
-.completed-section .completed-item {
-  font-size: 22px; /* Font size for completed queue numbers */
+.completed-item {
+  padding: 10px;
+  font-size: 25px; /* Adjusted font size for queue numbers */
+  background-color: #ffe0b2; /* Light orange for completed items */
+  border-radius: 5px;
+  margin-bottom: 10px;
   font-weight: bold;
-  margin-bottom: 5px;
+  text-align: center;
 }
+

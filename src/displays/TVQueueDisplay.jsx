@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase"; // Ensure this path is correct
 import "./TVQueueDisplay.css";
 
@@ -51,8 +51,6 @@ const TVQueueDisplay = () => {
         hour12: true, // Ensure AM/PM is included
       });
 
-      console.log(`Debug: Date = ${date}, Time = ${time}`); // Debug log to verify
-
       setCurrentTime(`${date} ${time}`);
     }, 1000);
 
@@ -84,6 +82,12 @@ const TVQueueDisplay = () => {
       // Update the list of upcoming patients
       const upcoming = patients.filter((patient) => patient.status === "waiting");
       setUpcomingPatients(upcoming);
+
+      // Update the list of completed patients in descending order
+      const completed = patients
+        .filter((patient) => patient.status === "completed")
+        .sort((a, b) => b.timestamp - a.timestamp); // Sort in descending order
+      setCompletedPatients(completed);
     });
 
     return () => unsubscribe();
@@ -95,7 +99,7 @@ const TVQueueDisplay = () => {
         <div className="date">{currentTime.split(" ")[0]}</div> {/* Date */}
         <div className="time">{currentTime.split(" ").slice(1).join(" ")}</div> {/* Time */}
       </div>
-      
+
       <div className="main-container">
         {/* Left Side: Waiting */}
         <div className="waiting-left-side">
